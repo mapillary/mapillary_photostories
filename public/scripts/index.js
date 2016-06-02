@@ -6,9 +6,7 @@ var firstPageClosed = false;
 initPage();
 initMap(53.0, 53.0);
 
-
-
-//Click handlers
+// Click handlers
 $('#view-map').click(function() {
     replaceDescriptionWithMap();
     map.invalidateSize();
@@ -38,7 +36,6 @@ $("#close-map").click(function() {
     $('#back').fadeIn("slow");
 });
 
-
 $('.grid-item').click(function() {
     var $this = $(this);
     fadeInCenterElements();
@@ -51,13 +48,13 @@ $('.grid-item').click(function() {
     $('.grid').masonry();
 });
 
-
 $('body').click(function() {
     if(!firstPageClosed) {
         closeFirstPage();
     }
 });
 
+//Helper functions
 function initPage() {
     $('#description').fadeIn( "slow" );
     $('#icon img').fadeIn( "slow" );
