@@ -79,7 +79,7 @@ app.get('/imginfo', function(req, res) {
 });
 
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('Running on port 3000.');
 });
 
 function addSequencesToList(err, data) {
@@ -168,8 +168,3 @@ function getStartInfo(pictureId, res1) {
     });
     req.end();
 }
-
-
-
-
-
