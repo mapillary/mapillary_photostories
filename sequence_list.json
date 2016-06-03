@@ -1,65 +1,45 @@
 {
-  "mainTitle": "The Los Angeles River",
-  "frontPageDescription": "Los Angeles River (also known as the L.A. River) starts in the Simi Hills and Santa Susana Mountains and flows through Los Angeles County, California, from Canoga Park in the western end of the San Fernando Valley, nearly 48 miles (77 km) southeast to its mouth in Long Beach. Several tributaries join the once free-flowing and frequently flooding river, forming alluvial flood plains along its banks. It now flows through a concrete channel on a fixed course, which was built after a series of devastating floods in the early 20th century.",
+  "mainTitle": "I <3 Greenpoint",
+  "frontPageDescription": "My favorite spots in the best neighborhood in Brooklyn.",
   "keys":[
     {
-      "key": "m5x9Eqzr3y4OrWl6Np0TLQ",
-      "title": "Test Title",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
+      "key": "ZntZkOzs65XkjNz-Out5PA",
+      "title": "Transmitter Park",
+      "description": "Transmitter Park was the site of the public radio station WNYC from 1937 - 1990.  Now it's a great little local park with amazing views of Manhattan across the East River.  Bernie Sanders held his Brooklyn rally here and it was packed."
     },
     {
-      "key": "lsj856HLreO7njJm9LZi6Q",
-      "title": "Test Title",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
+      "key": "6vRsZAP-co7GX4hP--pC4w",
+      "title": "Manhattan Avenue",
+      "description": "Before Greenpoint was overrun with hipsters, it was a thriving Polish community. You can still see evidence of it on the main drag.  On this stretch from Greenpoint Ave walking north, you'll pass at least three Polish butchers and two Polish bakeries." 
     },
     {
-      "key": "3N600P5_t5m2Zv_Sw2BzQA",
-      "title": "Test Title",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
+      "key": "D9T1vXqdYk31wdnxXClCpA",
+      "title": "McCarren Park",
+      "description": "McCarren is huge and has lots of amenities, including a restored olympic sized pool.  10 years ago, this pool was empty for awhile, and they used to have concerts in it.  I watched Deerhoof play one of their best shows here."  
     },
     {
-      "key": "HV8I8ffQGiRKP71KRV3pQA",
-      "title": "Test Title",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
-    },
-    {
-      "key": "PE7AM9p0-_vyG4hc5jabfw" ,
-      "title": "Test Title",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
-    },
-    {
-      "key": "Zv3nQhwTQgCvbgLv4og_hQ",
-      "title": "Test Title",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
-    },
-    {
-      "key": "KdRExlooG_chrjAEYUzrMA",
-      "title": "Test Title",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
-    },
-    {
-      "key": "rJBFEuye7wOwiixxjf3S-w",
-      "title": "A Test Title",
-      "description": "A Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
-    },
-    {"key": "9WrXITg97cWZfQCyDEmOaA",
-      "title": "Test Title",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada, elit sed rhoncus maximus, nibh mauris pellentesque elit, et lacinia tortor purus posuere quam. In rhoncus libero in dignissim eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nunc, consequat ut justo eget, condimentum efficitur velit. Morbi volutpat euismod lectus, sed egestas elit commodo a. Quisque ligula nunc, commodo ut felis at, cursus bibendum elit. Phasellus velit sem, lobortis quis blandit vel, rutrum sit amet urna. Suspendisse ex massa, blandit vitae nulla et, iaculis tempor arcu. Fusce eget velit non mauris elementum condimentum id at arcu. Aenean feugiat congue dapibus. Pellentesque a nisl nec tortor fringilla dictum."
+      "key": "7G6erbU_8zJUfHcRPwYXhw",
+      "title": "Pulaski Bridge",
+      "description": "Until recently, the Pulaski Bridge --while offering amazing views of the Manhattan skyline-- was  death trap for pedestrians.  The NYCDOT opened a separate bike lane on May 1 and it is now a glorious 10 minute walk from Brooklyn to Queens."
     }
   ],
 
   "imagedescriptions" : [
     {
-      "key": "yzejGxEZXthtX37Lq0_55w",
-      "description": "This picture is really cool"
+      "key": "HVVtGpBbv7S2WkYvY4eADA",
+      "description": "Am I technically in Brooklyn or Queens at this point?"
     },
     {
-      "key": "yg7kt6Kkegj9JeAH5mWyhQ",
-      "description": "The world is filled with amazing things."
+      "key": "A7oY6SgBTjHRTu_Cd6ISfA",
+      "description": "These pics don't do the park justice -- that thumb belongs to Dave from Mapzen."
     },
     {
-      "key": "j_M37ukB6Q_RSH9mKN-p4g",
-      "description": "Take this blue building for example. Pretty neat, huh?"
+      "key": "tRONCUnNtniKVeycYraang",
+      "description": "This is where people #feltthebern."
+    },
+    {
+      "key": "6vRsZAP-co7GX4hP--pC4w",
+      "description": "At Kiszka I learned that kielbasa is just a generic word for sausage and there are many many types -- my favorite is kabanosy."
     }
   ]
 }
