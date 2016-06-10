@@ -43,18 +43,21 @@ app.get('/storyinfo', function(req, res) {
         if (err) throw err;
         var title = "";
         var description = "";
+        var startNode = "";
         var sequenceId = map.get(JSON.parse(Object.keys(req.query)[0]).picId);
         var d = JSON.parse(data);
         for(var i = 0; i < d.keys.length; i++) {
             if(d.keys[i].key == sequenceId) {
                 title = d.keys[i].title;
                 description = d.keys[i].description;
+                startNode = d.keys[i].startNode;
             }
         }
 
         var returnData = {};
         returnData.title = title;
         returnData.description = description;
+        returnData.startNode = startNode;
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(returnData));
     });

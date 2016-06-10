@@ -267,5 +267,6 @@ p {
     position:absolute;
     left: 30px;
     color: white;
+    background-color: rgba(32,32,32,.65);
     z-index:99;
 }

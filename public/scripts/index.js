@@ -41,8 +41,7 @@ $('.grid-item').click(function() {
     fadeInCenterElements();
 
     var requestString = getRequestString($this);
-    setSequenceTitleAndDescription(requestString);
-    initMapillaryViewer($this);
+    setSequenceTitleAndDescription($this, requestString);
     wrapImagesWithLinks($this);
 
     $('.grid').masonry();
@@ -135,9 +134,13 @@ function checkForImageDescription(picId) {
     });
 }
 
-function initMapillaryViewer(el) {
-    var picId =  el.find('img').attr('src').replace("https://d1cuyjsrcm0gby.cloudfront.net/", '');
-    picId = picId.replace("/thumb-2048.jpg", '');
+function initMapillaryViewer(el, startNode) {
+    if(!startNode) {
+        var picId = el.find('img').attr('src').replace("https://d1cuyjsrcm0gby.cloudfront.net/", '');
+        picId = picId.replace("/thumb-2048.jpg", '');
+    } else {
+        picId = startNode;
+    }
 
     viewer = new Mapillary
         .Viewer('mly',
@@ -161,7 +164,7 @@ function initMapillaryViewer(el) {
 
 }
 
-function setSequenceTitleAndDescription(requestString) {
+function setSequenceTitleAndDescription($this, requestString) {
     $.ajax({
         method: 'get',
         url: window.location.origin + '/storyinfo',
@@ -172,8 +175,11 @@ function setSequenceTitleAndDescription(requestString) {
     }).done(function(data){
         var title = data.title;
         var description = data.description;
+        var startNode = data.startNode;
         $("#description-text h1").text(title);
         $("#description-text p").text(description);
+        initMapillaryViewer($this, startNode);
+
     });
 }
 
