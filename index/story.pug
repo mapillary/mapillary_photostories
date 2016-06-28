@@ -1,0 +1,61 @@
+html
+  head
+    meta(charset='UTF-8')
+    title mapillary-js + Leaflet.js example
+    link(rel='stylesheet', href='https://npmcdn.com/mapillary-js@1.4.1/dist/mapillary-js.min.css')
+    link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css')
+    link(rel='stylesheet', type='text/css', href='/css/story.css', media='screen')
+
+  body
+  #map-full
+  .mly-wrapper-full
+    #mly-full
+    script(src='//cdn.leafletjs.com/leaflet-0.7.5/leaflet.js')
+    script(src='//spatialserver.github.io/Leaflet.MapboxVectorTile/dist/Leaflet.MapboxVectorTile.js')
+    script(src='https://npmcdn.com/mapillary-js@1.4.1/dist/mapillary-js.min.js')
+    script.
+        var imgLat = "#{imgLat}";
+        var imgLon = "#{imgLon}";
+        var pictureId = "#{pictureId}";
+
+        var mapFull = L.map('map-full').setView([0, 0], 10);
+        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+        var osm = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+        mapFull.addLayer(osm)
+        var mlyVectorLayerConfig = {
+            url: "https://d2munx5tg0hw47.cloudfront.net/tiles/{z}/{x}/{y}.mapbox",
+            maxZoom: 18,
+            style: function (feature) {
+                var style = {};
+                style.color = 'rgba(0, 255, 0, 0.7)';
+                style.size = 3;
+                return style
+            }
+        };
+
+        var mvtSource = new L.TileLayer.MVTSource(mlyVectorLayerConfig);
+        mapFull.addLayer(mvtSource);
+        var marker;
+        var latLon = [imgLat, imgLon];
+        mapFull.setView(latLon, 15);
+        marker = L.marker({
+            lat: latLon[0],
+            lon: latLon[1]
+        });
+        marker.addTo(mapFull);
+        var mlyFull = new Mapillary
+            .Viewer('mly-full',
+            'cjJ1SUtVOEMtdy11b21JM0tyYTZIQTo2ZmVjNTQ3YWQ0OWI2Yjgx',
+            pictureId,
+            {cover: false, baseImageSize: Mapillary.ImageSize.Size2048, maxImageSize: Mapillary.ImageSize.Size2048});
+
+        mlyFull.on('nodechanged', function (node) {
+            var latLon = [node.latLon.lat, node.latLon.lon];
+            map.setView(latLon, 15);
+            if (!marker) {
+                marker = L.marker(node.latLon).addTo(mapFull)
+            } else {
+                marker.setLatLng(node.latLon)
+            }
+         });
