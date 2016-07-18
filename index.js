@@ -1,10 +1,13 @@
-//json and thumbnails
 var jsonReturned;
-var thumbnailURLs = []
-//markers
-var markerList = [];
+var thumbnailURLs = [];
+var markerList = {
+    "type": "geojson",
+    "data": {
+        "type": "FeatureCollection",
+        "features": []
+    }
+};
 var rightMarker;
-//maps
 var map;
 var rightMap;
 var CLIENT_ID = "TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj";
@@ -14,7 +17,8 @@ $("#back").click(function() {
     $('.center-panel').fadeOut("slow");
     $('#back').fadeOut("slow");
     var descriptionDiv = $('#img-description').detach();
-    $('#mly').empty()
+    $(playButton).click();
+    $('#mly').empty();
 });
 
 $("#close-map").click(function() {
@@ -28,7 +32,7 @@ initRightMap(53.0, 53.0, 'right-map');
 
 function initAllViewers() {
     $('#story #story-description .glyphicon.glyphicon-resize-full').each(function(i, el) {
-        var id = "fullscreen-" + i;
+        var id = "fullscreen-" + i;;
         $(el).attr('id', id);
     });
 
@@ -85,7 +89,7 @@ var sequenceIds = [];
 function getThumbnailForSequence(sequenceId, length, currentIndex) {
     sequenceIds.push(sequenceId);
     var pathAppend = '/v2/s/' + sequenceId + '?client_id=' + CLIENT_ID;
-    var host =  'https://a.mapillary.com';
+    var host = 'https://a.mapillary.com';
 
     $.ajax({
         url: host + pathAppend,
@@ -104,11 +108,11 @@ function getThumbnailForSequence(sequenceId, length, currentIndex) {
                         description = jsonReturned.keys[i].description
                     }
                 }
-                $('#story').append("<div id='story-description'><h2>" +
-                description +
-                "</h2><br><br><p id='img-description'></p><div class='story-item'> <img src='" +
-                thumbnailURLs[i] +
-                "'/></div><hr></div>");
+                $('#story').append("<div id='story-description'><h2 id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
+                    description +
+                    "</h2><br><br><p id='img-description'></p><div class='story-item'> <img src='" +
+                    thumbnailURLs[i] +
+                    "'/></div><hr></div>");
             }
             initAllViewers();
             initMap(53.0, 53.0, 'map');
@@ -117,80 +121,163 @@ function getThumbnailForSequence(sequenceId, length, currentIndex) {
 }
 
 function initMap(lat, lon, map) {
-    map = L.map(map).setView([0, 0], 20);
-    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-    var osm = new L.TileLayer(osmUrl, {
-        maxZoom: 18,
-        attribution: osmAttrib
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWFwaWxsYXJ5IiwiYSI6ImNpanB0NmN1bDAwOTF2dG03enM3ZHRocDcifQ.Z6wgtnyRBO0TuY3Ak1tVLQ';
+    map = new mapboxgl.Map({
+        container: map, // container id
+        style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
+        center: [lon, lat], // starting position
+        zoom: 12 // starting zoom
     });
-    map.addLayer(osm);
 
-    var mlyVectorLayerConfig = {
-        url: 'https://d2munx5tg0hw47.cloudfront.net/tiles/{z}/{x}/{y}.mapbox',
-        maxZoom: 18,
-        style: function(feature) {
-            var style = {};
-            style.color = 'rgba(0, 255, 0, 0.7)';
-            style.size = 3;
-            return style;
-        }
+    var mapillarySource = {
+        type: 'vector',
+        tiles: ['https://d2munx5tg0hw47.cloudfront.net/tiles/{z}/{x}/{y}.mapbox'],
+        minzoom: 0,
+        maxzoom: 16
     };
 
-    var mvtSource = new L.TileLayer.MVTSource(mlyVectorLayerConfig);
-    map.addLayer(mvtSource);
-    var latLon = [lat, lon];
-
+    var bounds = new mapboxgl.LngLatBounds();
     for (var i = 0; i < jsonReturned.keys.length; i++) {
-        var searchKey = jsonReturned.keys[i].key;
-        var pathAppend = '/v2/s/' + searchKey + '?client_id=' + CLIENT_ID;
-        var host = 'https://a.mapillary.com';
-
-        $.ajax({
-            url: host + pathAppend,
-            type: 'GET',
-            dataType: 'json'
-        }).success(function(data) {
-            console.log(data);
-            var coords = data.coords[0];
-            var marker = L.marker({
-                lat: coords[1],
-                lon: coords[0]
-            });
-            marker.addTo(map);
-            markerList.push(marker)
-
-            var group = new L.featureGroup(markerList);
-            map.fitBounds(group.getBounds());
-        });
+        addMarker(map, bounds, jsonReturned.keys[i].key, jsonReturned.keys[i].title)
     }
+
+    map.on('load', function() {
+        map.addSource("points", markerList);
+        map.addLayer({
+            "id": "points",
+            "type": "symbol",
+            "source": "points",
+            "layout": {
+                "icon-image": "{icon}-15",
+                "text-field": "{title}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-offset": [0, 0.6],
+                "text-anchor": "top"
+            }
+        });
+
+        map.addSource('mapillary', mapillarySource)
+        map.addLayer({
+            'id': 'mapillary',
+            'type': 'line',
+            'source': 'mapillary',
+            'source-layer': 'mapillary-sequences',
+            'layout': {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            'paint': {
+                'line-opacity': 0.6,
+                'line-color': 'rgb(53, 175, 109)',
+                'line-width': 2
+            }
+        }, 'markers')
+
+        map.on('click', function(e) {
+            var divToScroll = map.queryRenderedFeatures(e.point)[0].properties.title;
+            divToScroll = ('#' + divToScroll).toString();
+            divToScroll = divToScroll.replace(' ', '-');
+            $('html, body').animate({
+                scrollTop: $(divToScroll).offset().top
+            }, 2000);
+        });
+    });
+
+    map.scrollZoom.disable();
+    map.addControl(new mapboxgl.Navigation());
 }
 
-function initRightMap(lat, lon, setMap) {
-    rightMap = L.map(setMap).setView([0, 0], 17);
-    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-    var osm = new L.TileLayer(osmUrl, {
-        maxZoom: 18,
-        attribution: osmAttrib
+function addMarker(map, bounds, searchKey, title) {
+    var pathAppend = '/v2/s/' + searchKey + '?client_id=' + CLIENT_ID;
+    var host = 'https://a.mapillary.com';
+    $.ajax({
+        url: host + pathAppend,
+        type: 'GET',
+        dataType: 'json'
+    }).success(function(data) {
+        var coords = data.coords[0];
+        var feature = {
+            "type": "Feature",
+            "properties": {
+                "title": title,
+                "icon": "marker"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [coords[0], coords[1]]
+            }
+        };
+        markerList.data.features.push(feature);
+        bounds.extend(feature.geometry.coordinates);
+        map.fitBounds(bounds);
     });
-    rightMap.addLayer(osm);
+}
 
-    var mlyVectorLayerConfig = {
-        url: 'https://d2munx5tg0hw47.cloudfront.net/tiles/{z}/{x}/{y}.mapbox',
-        maxZoom: 18,
-        style: function(feature) {
-            var style = {};
-            style.color = 'rgba(0, 255, 0, 0.7)';
-            style.size = 3;
-            return style;
-        }
+
+function initRightMap(lat, lon, setMap) {
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWFwaWxsYXJ5IiwiYSI6ImNpanB0NmN1bDAwOTF2dG03enM3ZHRocDcifQ.Z6wgtnyRBO0TuY3Ak1tVLQ';
+    rightMap = new mapboxgl.Map({
+        container: setMap, // container id
+        style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
+        center: [lon, lat], // starting position
+        zoom: 12 // starting zoom
+    });
+
+    var mapillarySource = {
+        type: 'vector',
+        tiles: ['https://d2munx5tg0hw47.cloudfront.net/tiles/{z}/{x}/{y}.mapbox'],
+        minzoom: 0,
+        maxzoom: 16
     };
 
-    var mvtSource = new L.TileLayer.MVTSource(mlyVectorLayerConfig);
-    rightMap.addLayer(mvtSource);
-    var latLon = [lat, lon];
-    rightMap.setView(latLon, 15);
+    rightMap.on('style.load', function() {
+        var markerSource = {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [lon, lat]
+                },
+                properties: {
+                    title: 'You\'re here!',
+                    'marker-symbol': 'marker'
+                }
+            }
+        };
+
+        rightMap.addSource('markers', markerSource);
+        rightMap.addLayer({
+            id: 'markers',
+            type: 'symbol',
+            source: 'markers',
+            layout: {
+                'icon-image': '{marker-symbol}-15',
+                'text-field': '{title}',
+                'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+                'text-offset': [0, 0.6],
+                'text-anchor': 'top'
+            }
+        })
+
+        rightMap.addSource('mapillary', mapillarySource)
+        rightMap.addLayer({
+            'id': 'mapillary',
+            'type': 'line',
+            'source': 'mapillary',
+            'source-layer': 'mapillary-sequences',
+            'layout': {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            'paint': {
+                'line-opacity': 0.6,
+                'line-color': 'rgb(53, 175, 109)',
+                'line-width': 2
+            }
+        }, 'markers')
+    })
+
 }
 
 function checkForImageDescription(el, picId) {
@@ -202,7 +289,6 @@ function checkForImageDescription(el, picId) {
     });
     var descriptionElement = el.parent().parent().find('#img-description')
     if (imgDescription != "") {
-        console.log(imgDescription);
         descriptionElement.show();
         descriptionElement.show();
         descriptionElement.text(imgDescription);
@@ -227,21 +313,34 @@ function initMapillaryViewer(el, startNode) {
                 cover: false,
                 baseImageSize: Mapillary.ImageSize.Size2048,
                 maxImageSize: Mapillary.ImageSize.Size2048,
-                navigation: false
+                sequence: {
+                    minWidth: 200,
+                }
             });
-
-    viewer.on('nodechanged', function(node) {
-        var latLon = [node.latLon.lat, node.latLon.lon]
-        if (rightMap != null) {
-            rightMap.setView(latLon, 15);
-            if (!rightMarker) {
-                rightMarker = L.marker(node.latLon).addTo(rightMap)
-            } else {
-                rightMarker.setLatLng(node.latLon)
-            }
-        }
-        checkForImageDescription(el, node._key);
-    });
+    if (el.attr('id') == "mly") {
+        viewer.on('nodechanged', function(node) {
+            rightMap.resize();
+            var lnglat = [node.latLon.lon, node.latLon.lat]
+            var tempSource = new mapboxgl.GeoJSONSource({
+                data: {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: lnglat
+                    },
+                    properties: {
+                        title: 'You\'re here!',
+                        'marker-symbol': 'marker'
+                    }
+                }
+            })
+            rightMap.getSource('markers').setData(tempSource._data)
+            rightMap.flyTo({
+                center: lnglat,
+                zoom: 15
+            })
+        });
+    }
 }
 
 function fadeInCenterElements() {
@@ -256,7 +355,6 @@ function initMapillaryViewerIcons() {
         var picId = $(this).parent().attr('class').replace('wrapper-', '');
         fadeInCenterElements();
         initMapillaryViewer($('#mly'), picId);
-        rightMap.invalidateSize();
     });
 
     $('.glyphicon.glyphicon-play').click(function() {
