@@ -11,19 +11,28 @@ var rightMarker;
 var map;
 var rightMap;
 var CLIENT_ID = "TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj";
-
+var allViewers = [];
 
 //bottom bar map scroll handler //this will have to change, now just removing map when scrolling
 $(document).scroll(function() {
     var storyPosition = $("#story").offset().top;
     var y = $(document).scrollTop(),
-        header = $("#right-map");
+        footer = $("#right-map");
     if(y >= storyPosition)  {
-        header.css({position: "fixed", "top" : "75%"});
+        footer.css({position: "fixed", "top" : "75%"});
     } else {
-        header.css({position : "fixed", display: "none"});
+        footer.css({position : "relative", display: "none"});
     }
 });
+
+// $(document).on('resize', resizeViewers);
+
+// function resizeViewers() {
+//     console.log("resized");
+//     for (i = 0; i < allViewers.length; i++) {
+//         allViewers[i].resize();
+//     }
+// }
 
 // Click handlers
 $("#back").click(function() {
@@ -78,20 +87,15 @@ function initAllViewers() {
     initMapillaryViewerIcons();
 }
 
-
-//Helper functions
-function initPage() {
-    $('document').ready(function() {
-        $(window).scrollTop(0);
-
-        $.ajax({
+function getGistJson() {
+    $.ajax({
             // url: 'https://gist.github.com/filippak/cc24b5f51084b6677b7f4119e2101c3f.js',
             url: 'https://api.github.com/gists/' + '008b49fd6bb056ddf15c6562fb4f0a26',
             type: 'GET',
             dataType: 'jsonp'
         }).success(function(gistdata) {
             jsonReturned = JSON.parse(gistdata.data.files.sequence_list.content);
-            console.log(jsonReturned); //added
+            // console.log(jsonReturned); 
             $('#mainTitle').text(jsonReturned.mainTitle);
             $('#mainDescription').text(jsonReturned.frontPageDescription);
             $('#description').fadeIn("slow");
@@ -100,10 +104,55 @@ function initPage() {
                 getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
             });
         });
+}
+
+function getLocalJson() {
+    $.getJSON("sequence_list.json", function(json) {
+        // console.log(json); 
+        jsonReturned = json;
+        $('#mainTitle').text(jsonReturned.mainTitle);
+        $('#mainDescription').text(jsonReturned.frontPageDescription);
+        $('#description').fadeIn("slow");
+        //get author and intro from new json format here
+        $(jsonReturned.keys).each(function(index, element) {
+            getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
+        });
+    });
+}
+
+
+//Helper functions
+function initPage() {
+    $('document').ready(function() {
+        $(window).scrollTop(0);
+        
+        getGistJson();
+        // getLocalJson();
         initMapillaryViewerIcons();
     });
 }
 
+function appendStoryElements (index) {
+    //same functionality as before, just breaking out in own function
+    for (var i = 0; i < thumbnailURLs.length; i++) {
+        var id = thumbnailURLs[i].replace('https://d1cuyjsrcm0gby.cloudfront.net/', '');
+        id = id.replace('/thumb-2048.jpg', '');
+        var description = "";
+        for (var z = 0; z < jsonReturned.keys.length; z++) {
+            if (jsonReturned.keys[z].key === sequenceIds[i]) {
+                description = jsonReturned.keys[i].description
+            }
+        }
+        console.log("appending div");
+        $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
+            description +
+            "</h2> </div> <p id='img-description'></p> <div class='fullscreen-item'> <img src='" +
+            thumbnailURLs[i] +
+            "'/> </div> </div>");
+    }
+}
+
+var counter = 0;
 var sequenceIds = [];
 
 function getThumbnailForSequence(sequenceId, length, currentIndex) {
@@ -114,35 +163,33 @@ function getThumbnailForSequence(sequenceId, length, currentIndex) {
     $.ajax({
         url: host + pathAppend,
         type: 'GET',
-        dataType: 'json'
-    }).success(function(data) {
-        thumbnailURLs.push("https://d1cuyjsrcm0gby.cloudfront.net/" + data.keys[0] +
-            "/thumb-2048.jpg");
-        if (currentIndex == length - 1) {
-            for (var i = 0; i < thumbnailURLs.length; i++) {
-                var id = thumbnailURLs[i].replace('https://d1cuyjsrcm0gby.cloudfront.net/', '');
-                id = id.replace('/thumb-2048.jpg', '');
-                var description = "";
-                for (var z = 0; z < jsonReturned.keys.length; z++) {
-                    if (jsonReturned.keys[z].key === sequenceIds[i]) {
-                        description = jsonReturned.keys[i].description
-                    }
-                }
-                // $('#story').append("<div id='story-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
-                //     description +
-                //     "</h2> </div> <br><br><p id='img-description'></p><div class='story-item'> <img src='" +
-                //     thumbnailURLs[i] +
-                //     "'/></div> </div>");
+        dataType: 'json',
+        success: function(data) {
+            console.log("successfully feched the data");
+            console.log(data);
+            var thumbnail = ("https://d1cuyjsrcm0gby.cloudfront.net/" + data.keys[0] +
+                "/thumb-2048.jpg");
+            thumbnailURLs[currentIndex] = thumbnail;
+            // thumbnailURLs.push("https://d1cuyjsrcm0gby.cloudfront.net/" + data.keys[0] +
+            //     "/thumb-2048.jpg");
 
-                //added to add all divs for the full view story
-                $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
-                    description +
-                    "</h2> </div> <p id='img-description'></p> <div class='fullscreen-item'> <img src='" +
-                    thumbnailURLs[i] +
-                    "'/> </div> </div>");
+            counter++;
+            console.log(counter + " thumbnails fetched");
+            if (counter == length) { //to make sure that all elements have been fetched before continuing
+                appendStoryElements(currentIndex);
+                    //old, appending to story
+                        //         // $('#story').append("<div id='story-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
+                        //         //     description +
+                        //         //     "</h2> </div> <br><br><p id='img-description'></p><div class='story-item'> <img src='" +
+                        //         //     thumbnailURLs[i] +
+                        //         //     "'/></div> </div>");
+
             }
             initAllViewers();
             initMap(53.0, 53.0, 'map');
+        }, //success end
+        error: function() {
+            console.log("ERROR FETCHING DATA");
         }
     });
 }
@@ -236,7 +283,7 @@ function addMarker(map, bounds, searchKey, title) {
         };
         markerList.data.features.push(feature);
         bounds.extend(feature.geometry.coordinates);
-        map.fitBounds(bounds);
+        map.fitBounds(bounds, {padding: 50}); //padding to see all points
     });
 }
 
@@ -350,10 +397,16 @@ function initViewerMapBlock(el, startNode) {
                 }
             });
 
+        // allViewers.push(viewer);
+        // console.log(allViewers);
+
         viewer.on('nodechanged', function(node) {
-            console.log("THE NODE");
-            console.log(node);
-            $("#right-map").css({display: "block"});
+            //if in the story section
+            var storyPosition = $("#story").offset().top;
+            var y = $(document).scrollTop();
+            if (y >= storyPosition)  {
+                $("#right-map").css({display: "block"});
+            }
             rightMap.resize();
             var lnglat = [node.latLon.lon, node.latLon.lat]
             var tempSource = new mapboxgl.GeoJSONSource({
@@ -376,6 +429,7 @@ function initViewerMapBlock(el, startNode) {
             })
         });
         viewer.on('hover', function(node) {
+            console.log("on hover in viewer"); 
             rightMap.resize();
             var lnglat = [node.latLon.lon, node.latLon.lat]
             var tempSource = new mapboxgl.GeoJSONSource({
@@ -419,6 +473,7 @@ function initMapillaryViewer(el, startNode) {
                     minWidth: 200,
                 }
             });
+
     if (el.attr('id') == "mly") {
         viewer.on('nodechanged', function(node) {
             rightMap.resize();
