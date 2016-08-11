@@ -15,6 +15,7 @@ var allViewers = [];
 
 //bottom bar map scroll handler //this will have to change, now just removing map when scrolling
 $(document).scroll(function() {
+    //set maps without padding
     var storyPosition = $("#story").offset().top;
     var y = $(document).scrollTop(),
         footer = $("#right-map");
@@ -22,17 +23,10 @@ $(document).scroll(function() {
         footer.css({position: "fixed", "top" : "75%"});
     } else {
         footer.css({position : "relative", display: "none"});
+        $(".fullscreen-item").css("height", "100%");
+        $("#fullscreen-view").css("padding-bottom", "10%");
     }
 });
-
-// $(document).on('resize', resizeViewers);
-
-// function resizeViewers() {
-//     console.log("resized");
-//     for (i = 0; i < allViewers.length; i++) {
-//         allViewers[i].resize();
-//     }
-// }
 
 // Click handlers
 $("#back").click(function() {
@@ -89,7 +83,6 @@ function initAllViewers() {
 
 function getGistJson() {
     $.ajax({
-            // url: 'https://gist.github.com/filippak/cc24b5f51084b6677b7f4119e2101c3f.js',
             url: 'https://api.github.com/gists/' + '008b49fd6bb056ddf15c6562fb4f0a26',
             type: 'GET',
             dataType: 'jsonp'
@@ -120,35 +113,65 @@ function getLocalJson() {
     });
 }
 
+function getLocalNewJson() {
+    $.getJSON("rio_story.json", function(json) {
+        // console.log(json); 
+        jsonReturned = json;
+        $('#mainTitle').text(jsonReturned.mainTitle);
+        $('#mainDescription').text(jsonReturned.frontPageDescription);
+        $('#intro').text(jsonReturned.intro);
+        $('#author').text(jsonReturned.author);
+        $('#date').text(jsonReturned.date);
+        $('#description').fadeIn("slow");
+        $('#authorDate').fadeIn("slow");
+        //get author and intro from new json format here
+        $(jsonReturned.keys).each(function(index, element) {
+            getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
+        });
+    });
+}
 
 //Helper functions
 function initPage() {
     $('document').ready(function() {
         $(window).scrollTop(0);
         
-        getGistJson();
+        //getGistJson();
         // getLocalJson();
+        getLocalNewJson();
         initMapillaryViewerIcons();
     });
+}
+function findDescription (currentIndex) {
+    for (var z = 0; z < jsonReturned.keys.length; z++) {
+            if (jsonReturned.keys[z].key === sequenceIds[currentIndex]) {
+                return jsonReturned.keys[currentIndex].description;
+            }
+    }
+    return "";
 }
 
 function appendStoryElements (index) {
     //same functionality as before, just breaking out in own function
     for (var i = 0; i < thumbnailURLs.length; i++) {
+        console.log("THE URL: " + thumbnailURLs[i]);
+        if (thumbnailURLs[i] != "") {
         var id = thumbnailURLs[i].replace('https://d1cuyjsrcm0gby.cloudfront.net/', '');
         id = id.replace('/thumb-2048.jpg', '');
-        var description = "";
-        for (var z = 0; z < jsonReturned.keys.length; z++) {
-            if (jsonReturned.keys[z].key === sequenceIds[i]) {
-                description = jsonReturned.keys[i].description
-            }
-        }
-        console.log("appending div");
-        $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
+        var description = findDescription(i);
+        console.log("appending div with viewer");
+        $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
             description +
             "</h2> </div> <p id='img-description'></p> <div class='fullscreen-item'> <img src='" +
             thumbnailURLs[i] +
             "'/> </div> </div>");
+        } else {
+            var description = findDescription(i);
+            console.log("appending div without viewer");
+            $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
+            description +
+            "</h2> </div> </div>");
+        }
     }
 }
 
@@ -156,7 +179,9 @@ var counter = 0;
 var sequenceIds = [];
 
 function getThumbnailForSequence(sequenceId, length, currentIndex) {
+    console.log(sequenceId);
     sequenceIds.push(sequenceId);
+    if (sequenceId != "") {
     var pathAppend = '/v2/s/' + sequenceId + '?client_id=' + CLIENT_ID;
     var host = 'https://a.mapillary.com';
 
@@ -192,6 +217,10 @@ function getThumbnailForSequence(sequenceId, length, currentIndex) {
             console.log("ERROR FETCHING DATA");
         }
     });
+    } else {
+        thumbnailURLs[currentIndex] = "";
+        counter++;
+    }
 }
 
 function initMap(lat, lon, map) {
@@ -262,29 +291,33 @@ function initMap(lat, lon, map) {
 }
 
 function addMarker(map, bounds, searchKey, title) {
-    var pathAppend = '/v2/s/' + searchKey + '?client_id=' + CLIENT_ID;
-    var host = 'https://a.mapillary.com';
-    $.ajax({
-        url: host + pathAppend,
-        type: 'GET',
-        dataType: 'json'
-    }).success(function(data) {
-        var coords = data.coords[0];
-        var feature = {
-            "type": "Feature",
-            "properties": {
-                "title": title,
-                "icon": "marker"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [coords[0], coords[1]]
-            }
-        };
-        markerList.data.features.push(feature);
-        bounds.extend(feature.geometry.coordinates);
-        map.fitBounds(bounds, {padding: 50}); //padding to see all points
-    });
+    console.log("!!!!!!!!!!!!!!!! adding marker");
+    //to exclude any keys that do not have a sequence
+    if (searchKey != "") {
+        var pathAppend = '/v2/s/' + searchKey + '?client_id=' + CLIENT_ID;
+        var host = 'https://a.mapillary.com';
+        $.ajax({
+            url: host + pathAppend,
+            type: 'GET',
+            dataType: 'json'
+        }).success(function(data) {
+            var coords = data.coords[0];
+            var feature = {
+                "type": "Feature",
+                "properties": {
+                    "title": title,
+                    "icon": "marker-15"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [coords[0], coords[1]]
+                }
+            };
+            markerList.data.features.push(feature);
+            bounds.extend(feature.geometry.coordinates);
+            map.fitBounds(bounds, {padding: 50}); //padding to see all points
+        });
+    }
 }
 
 
@@ -304,6 +337,12 @@ function initRightMap(lat, lon, setMap, picId) {
         minzoom: 0,
         maxzoom: 16
     };
+
+    //on error
+    rightMap.on('error', function(err) {
+        console.log("An error occured while loading this map");
+        console.log(err);
+    })
 
     rightMap.on('style.load', function() {
         var markerSource = {
@@ -402,34 +441,14 @@ function initViewerMapBlock(el, startNode) {
 
         viewer.on('nodechanged', function(node) {
             //if in the story section
-            var storyPosition = $("#story").offset().top;
+            var storyPosition = $("#fullscreen-view").offset().top;
             var y = $(document).scrollTop();
             if (y >= storyPosition)  {
                 $("#right-map").css({display: "block"});
+                $(".fullscreen-item").css("height", "75%");
+                        $("#fullscreen-view").css("padding-bottom", "20%");
+
             }
-            rightMap.resize();
-            var lnglat = [node.latLon.lon, node.latLon.lat]
-            var tempSource = new mapboxgl.GeoJSONSource({
-                data: {
-                    type: 'Feature',
-                    geometry: {
-                        type: 'Point',
-                        coordinates: lnglat
-                    },
-                    properties: {
-                        title: 'You\'re here!',
-                        'marker-symbol': 'marker'
-                    }
-                }
-            })
-            rightMap.getSource('markers').setData(tempSource._data)
-            rightMap.flyTo({
-                center: lnglat,
-                zoom: 15
-            })
-        });
-        viewer.on('hover', function(node) {
-            console.log("on hover in viewer"); 
             rightMap.resize();
             var lnglat = [node.latLon.lon, node.latLon.lat]
             var tempSource = new mapboxgl.GeoJSONSource({
