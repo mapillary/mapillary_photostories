@@ -2,8 +2,8 @@
 Tell your stories with photos
 
 ##Getting started
-  - First run npm install to get all the required packages
-  - Next run node server.js. That's it - the default location is localhost:3000.
+  - Open index.html
+  - Scroll and enjoy
 
 ##How to Add Your Stories
   - Open sequence_list.json in your favorite text editor.
