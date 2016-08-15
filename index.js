@@ -11,24 +11,30 @@ var rightMarker;
 var map;
 var rightMap;
 var CLIENT_ID = "TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj";
-var allViewers = [];
 
 //bottom bar map scroll handler //this will have to change, now just removing map when scrolling
 $(document).scroll(function() {
     //set maps without padding
     var storyPosition = $("#story").offset().top;
     var y = $(document).scrollTop(),
-        footer = $("#right-map");
+        footer = $("#clear-map");
     if(y >= storyPosition)  {
-        footer.css({position: "fixed", "top" : "75%"});
+        footer.css({position: "fixed", "top" : "70%"});
     } else {
         footer.css({position : "relative", display: "none"});
-        $(".fullscreen-item").css("height", "100%");
-        $("#fullscreen-view").css("padding-bottom", "10%");
+        // $(".fullscreen-item").css("height", "100%");
+        // $("#fullscreen-view").css("padding-bottom", "10%");
     }
 });
 
 // Click handlers
+$("#close-bottom-map").click(function() {
+    footer = $("#clear-map");
+    footer.css({position : "relative", display: "none"});
+    //display map icon here
+});
+
+//not used rn
 $("#back").click(function() {
     $('.center-panel').fadeOut("slow");
     $('#back').fadeOut("slow");
@@ -47,27 +53,6 @@ initPage();
 initRightMap(53.0, 53.0, 'right-map');
 
 function initAllViewers() {
-    // $('#story #story-description .glyphicon.glyphicon-resize-full').each(function(i, el) {
-    //     var id = "fullscreen-" + i;;
-    //     $(el).attr('id', id);
-    // });
-
-    // $('.story-item').each(function(i, el) {
-    //     var picId = $(el).find('img').attr('src').replace("https://d1cuyjsrcm0gby.cloudfront.net/", '');
-    //     picId = picId.replace("/thumb-2048.jpg", '');
-    //     var id = "story-item-" + picId;
-    //     $(el).attr('id', id);
-    //     var fullscreenId = '#fullscreen-' + picId;
-    //     $(fullscreenId).attr('id', fullscreenId);
-    //      initMapillaryViewer($(el));
-    //     //initViewerMapBlock($(el));
-    //     var newDivName = 'wrapper-' + picId;
-    //     $(el).wrap("<div class='" + newDivName + "' style='position: relative;'></div>");
-    //     newDivId = '.' + newDivName;
-    //     $(newDivId).append('<span class="glyphicon glyphicon-resize-full"></span>');
-    //     $(newDivId).append('<span class="glyphicon glyphicon-play"></span>');
-    // });
-
     //adding the viewer in the fullscreen mode
     $('.fullscreen-item').each(function(i, el) {
         var picId = $(el).find('img').attr('src').replace("https://d1cuyjsrcm0gby.cloudfront.net/", '');
@@ -106,12 +91,12 @@ function getLocalJson() {
         $('#mainTitle').text(jsonReturned.mainTitle);
         $('#mainDescription').text(jsonReturned.frontPageDescription);
         $('#description').fadeIn("slow");
-        //get author and intro from new json format here
         $(jsonReturned.keys).each(function(index, element) {
             getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
         });
     });
 }
+
 
 function getLocalNewJson() {
     $.getJSON("rio_story.json", function(json) {
@@ -124,7 +109,6 @@ function getLocalNewJson() {
         $('#date').text(jsonReturned.date);
         $('#description').fadeIn("slow");
         $('#authorDate').fadeIn("slow");
-        //get author and intro from new json format here
         $(jsonReturned.keys).each(function(index, element) {
             getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
         });
@@ -136,9 +120,9 @@ function initPage() {
     $('document').ready(function() {
         $(window).scrollTop(0);
         
-        //getGistJson();
+        getGistJson();
         // getLocalJson();
-        getLocalNewJson();
+        //getLocalNewJson();
         initMapillaryViewerIcons();
     });
 }
@@ -154,20 +138,19 @@ function findDescription (currentIndex) {
 function appendStoryElements (index) {
     //same functionality as before, just breaking out in own function
     for (var i = 0; i < thumbnailURLs.length; i++) {
-        console.log("THE URL: " + thumbnailURLs[i]);
-        if (thumbnailURLs[i] != "") {
-        var id = thumbnailURLs[i].replace('https://d1cuyjsrcm0gby.cloudfront.net/', '');
-        id = id.replace('/thumb-2048.jpg', '');
-        var description = findDescription(i);
-        console.log("appending div with viewer");
-        $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
-            description +
-            "</h2> </div> <p id='img-description'></p> <div class='fullscreen-item'> <img src='" +
-            thumbnailURLs[i] +
-            "'/> </div> </div>");
-        } else {
+        if (thumbnailURLs[i] != "") { //if element has sequence
+            var id = thumbnailURLs[i].replace('https://d1cuyjsrcm0gby.cloudfront.net/', '');
+            id = id.replace('/thumb-2048.jpg', '');
             var description = findDescription(i);
-            console.log("appending div without viewer");
+            // console.log("appending div with viewer");
+            $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
+                description +
+                "</h2> </div> <p id='img-description'></p> <div class='fullscreen-item'> <img src='" +
+                thumbnailURLs[i] +
+                "'/> </div> </div>");
+        } else { //text with no sequence (this will not work if there are multiple, wont find right sequence)
+            var description = findDescription(i);
+            // console.log("appending div without viewer");
             $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
             description +
             "</h2> </div> </div>");
@@ -190,8 +173,8 @@ function getThumbnailForSequence(sequenceId, length, currentIndex) {
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            console.log("successfully feched the data");
-            console.log(data);
+            // console.log("successfully feched the data");
+            // console.log(data);
             var thumbnail = ("https://d1cuyjsrcm0gby.cloudfront.net/" + data.keys[0] +
                 "/thumb-2048.jpg");
             thumbnailURLs[currentIndex] = thumbnail;
@@ -199,16 +182,9 @@ function getThumbnailForSequence(sequenceId, length, currentIndex) {
             //     "/thumb-2048.jpg");
 
             counter++;
-            console.log(counter + " thumbnails fetched");
+            // console.log(counter + " thumbnails fetched");
             if (counter == length) { //to make sure that all elements have been fetched before continuing
                 appendStoryElements(currentIndex);
-                    //old, appending to story
-                        //         // $('#story').append("<div id='story-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
-                        //         //     description +
-                        //         //     "</h2> </div> <br><br><p id='img-description'></p><div class='story-item'> <img src='" +
-                        //         //     thumbnailURLs[i] +
-                        //         //     "'/></div> </div>");
-
             }
             initAllViewers();
             initMap(53.0, 53.0, 'map');
@@ -218,7 +194,7 @@ function getThumbnailForSequence(sequenceId, length, currentIndex) {
         }
     });
     } else {
-        thumbnailURLs[currentIndex] = "";
+        thumbnailURLs[currentIndex] = ""; //appends empty string to the URL's..
         counter++;
     }
 }
@@ -291,7 +267,7 @@ function initMap(lat, lon, map) {
 }
 
 function addMarker(map, bounds, searchKey, title) {
-    console.log("!!!!!!!!!!!!!!!! adding marker");
+    // console.log("!!!!!!!!!!!!!!!! adding marker");
     //to exclude any keys that do not have a sequence
     if (searchKey != "") {
         var pathAppend = '/v2/s/' + searchKey + '?client_id=' + CLIENT_ID;
@@ -322,7 +298,6 @@ function addMarker(map, bounds, searchKey, title) {
 
 
 function initRightMap(lat, lon, setMap, picId) {
-    console.log("added new right map with id " + picId);
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFwaWxsYXJ5IiwiYSI6ImNpanB0NmN1bDAwOTF2dG03enM3ZHRocDcifQ.Z6wgtnyRBO0TuY3Ak1tVLQ';
     rightMap = new mapboxgl.Map({
         container: setMap, // container id
@@ -399,12 +374,12 @@ function initRightMap(lat, lon, setMap, picId) {
 
 function checkForImageDescription(el, picId) {
     var imgDescription = "";
-    $(jsonReturned.imagedescriptions).each(function(index, element) {
+    $(jsonReturned.imageDescriptions).each(function(index, element) {
         if (element.key === picId) {
             imgDescription = element.description;
         }
     });
-    var descriptionElement = el.parent().parent().find('#img-description')
+    var descriptionElement = el.parent().find('#img-description')
     if (imgDescription != "") {
         descriptionElement.show();
         descriptionElement.show();
@@ -429,6 +404,7 @@ function initViewerMapBlock(el, startNode) {
             'TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj',
             picId, {
                 cover: false,
+                // navigation: true, //why are the arrows so small?
                 baseImageSize: Mapillary.ImageSize.Size2048,
                 maxImageSize: Mapillary.ImageSize.Size2048,
                 sequence: {
@@ -436,20 +412,23 @@ function initViewerMapBlock(el, startNode) {
                 }
             });
 
-        // allViewers.push(viewer);
-        // console.log(allViewers);
 
         viewer.on('nodechanged', function(node) {
+            //find description
+            checkForImageDescription(el, picId);
+
             //if in the story section
             var storyPosition = $("#fullscreen-view").offset().top;
             var y = $(document).scrollTop();
             if (y >= storyPosition)  {
-                $("#right-map").css({display: "block"});
-                $(".fullscreen-item").css("height", "75%");
-                        $("#fullscreen-view").css("padding-bottom", "20%");
+                $("#clear-map").css({display: "block"});
+                $(".fullscreen-item").css({height: "75%"});
+                $("#fullscreen-view").css("padding-bottom", "20%");
+                viewer.resize();
 
             }
             rightMap.resize();
+            // viewer.resize(); //to fit new screensize
             var lnglat = [node.latLon.lon, node.latLon.lat]
             var tempSource = new mapboxgl.GeoJSONSource({
                 data: {
@@ -529,7 +508,7 @@ function fadeInCenterElements() {
 function initMapillaryViewerIcons() {
     $('.glyphicon.glyphicon-resize-full').click(function() {
         var picId = $(this).parent().attr('class').replace('wrapper-', '');
-        console.log(picId);
+        console.log("THE PIC ID IN INITAILIZING ICONS" +picId);
         fadeInCenterElements();
         initMapillaryViewer($('#mly'), picId);
     });
