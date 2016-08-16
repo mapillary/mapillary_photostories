@@ -1,0 +1,63 @@
+{
+  "mainTitle": "An Olympic City",
+  "frontPageDescription": "Photo mapping a fast-changing urban landscape",
+  "intro": "The spotlight shines on Rio this month as the world comes together to watch the best of the best compete in an ever increasing range of sports. We’ll leave coverage of the blood, sweat and tears to the professionals, but we thought we’d take this opportunity to highlight the photo mapping that has been taking place in Rio.",
+  "author": "Edoardo Neerhut",
+  "date": "August 10, 2016",
+  "keys":[
+    {
+      "key": "I54dg_evChAPMZDJi-QlLw",
+      "title": "City of Change",
+      "description": "Rio de Janeiro is a city that has been undergoing significant change. Economic growth, the expectations of citizens and the requirements of the World Cup and the Olympics have prompted a rethink and a massive redevelopment of the city&#8217s infrastructure. Subways have been built, favela&#8217s transformed, light rail and bus lines added to the mix and of course sprawling sports complexes constructed. Ideally this will result in a safer, more sustainable and better connected city."
+    },
+    {
+      "key": "6xnte9TNBWVdhQD_4NolWA",
+      "title": "Competing Interests",
+      "description": "The reality is that each of these changes have both positive and detrimental impacts on citizens as competing interests are managed. Pedestrians, cyclists, car owners, business owners and even the government must each communicate their positions and approach policy discussion from an informed perspective. Mapillary allows each of these groups to visually represent their city. Accessible to anyone with a smartphone, simple to use, but with powerful analysis behind every photo. Of course these groups are not mutually exclusive, and citizens can be equally concerned about cycling infrastructure as they are about reducing traffic congestion.<br><br> Arlindo Pereira, aka [Nighto](https://www.mapillary.com/profile/nighto) illustrates this well, photo mapping across Rio."
+    },
+    {
+      "key": "Be00NC7MwN8AJZES6gSqUg",
+      "title": "Mapping Infrastructure",
+      "description": "Arlindo has been using Mapillary to photo map this changing urban landscape. While there is still plenty of the city left to explore and map, Arlindo and other contributors in the city have already helped to document highways, cycling and pedestrian infrastructure and even the newly completed Transolímpica line, part of Rio&#8217s Bus Rapid Transit (BRT) system."
+    },
+    {
+      "key": "efAYI6ZY6nOcElKV2rlozQ",
+      "title": "BRT Transolympica",
+      "description": "Using just his smartphone, he has covered a significant portion of the BRT in just a few hours. <br><br>On the weekend of July 10th, the BRT Transolímpica was opened for the first time. Together with a toll expressway, it is a brand new way to drive around Rio. During the Olympics this road, and also the BRT, are exclusive for those who will watch or work on the games, but in that weekend we had a few hours to give it a try. So I knew it'd be the best opportunity to shoot some pictures before the Olympics. <br> <br> I went there with two cellphones - my main and a backup in case of failure -, also two external battery packs and a windshield mount. I entered the bus in the initial stop and before departure, asked the driver if it was ok to mount a cellphone to the windshield. He said no problem: perfect! <br> <br> So I ride a couple of times, recording forward in both ways, then recording sideways in both ways, so we have photos to all four directions."
+    },
+    {
+      "key": "kKJU1fgvIAtGGw49OXEyYA",
+      "title": "Technical Details",
+      "description": "It was very sunny, and on the way back, after ~1 hour of photo shooting, my cellphone - a Samsung Galaxy S5 - overheated and refused to take any more photos. So in the end it was a good thing that I had a backup phone. Another thing is that I could not find a good position without showing part of the mount in the picture, so there was some post processing needed to crop the pictures. But the result is pretty cool!"
+    },
+    {
+      "key": "Ni0fyL1TPPLtsfFIw3Mxjw",
+      "title": "Indoor Mapping",
+      "description": "He’s even excited to create more photo maps of subway stations, an exciting indoor location challenge for us to solve, but very useful for wheelchair accessibility."
+    },
+    {
+      "key": "1nKNCKSbW5ySPz1rD2YtpQ",
+      "title": "360 Mapping",
+      "description": "Soon Arlindo will have his hands on a 360º camera which will enable him to map city infrastructure, more thoroughly. Having photo coverage of newly constructed areas not only allows citizens to communicate their demands more effectively, it also allows governments the ability to respond. Citizens can discuss specifics regarding infrastructure such as bus shelters, signage, bike lanes, waste water drainage and any infrastructure that may be of interest."
+    },
+    {
+      "key": "",
+      "title": "What's next?",
+      "description": "We’ve already added support for Brazilian traffic sign detection and are developing better optical character recognition and semantic detection to automatically detect objects of interest. This means that on every image we’ll be detecting trees, cars, pedestrians, cyclists and a growing list of objects. <br>Using readily accessible equipment, Carioca’s (citizens of Rio) are documenting how the city changes over time. This is a real opportunity for government and constituents to work together to build a world class city that moves with the time. The lasting legacy of the Olympics on a city is determined by the infrastructure left behind and whether it still serves a purpose when the final medals have been awarded.<br><br>We hope you enjoyed this exploration of Rio and if you’re at the games, make sure to take some photos."
+    }
+  ],
+  "imageDescriptions" : [
+    {
+      "key": "hN8v40w8Xpi-Oo90sDIncA", 
+      "description" : "The Light Rail"
+    },
+    {
+      "key": "g_9C8RjMDPxBca5uaZkjcg", 
+      "description" : "Andaraí - in the hills of Rio"
+    },
+    {
+      "key": "GV85aLYZ0oPLkpaU6Uzdpw", 
+      "description" : "Bike paths in Botafogo"
+    }
+    ]
+}
