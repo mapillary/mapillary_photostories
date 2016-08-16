@@ -11,19 +11,28 @@ var rightMarker;
 var map;
 var rightMap;
 var CLIENT_ID = "TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj";
+//position last time node was changed
+var lastNodechange;
+
 
 //bottom bar map scroll handler //this will have to change, now just removing map when scrolling
 $(document).scroll(function() {
     var storyPosition = $("#fullscreen-view").offset().top;
     var y = $(document).scrollTop(),
         footer = $("#clear-map");
-    if(y >= storyPosition)  {
+    if (y >= storyPosition)  {
         footer.css({position: "fixed", "top" : "70%"});
         $("#expand-map").css({position: "fixed", "top" : "95%"});
     } else {
         //cannot expand map if at top part of page
         footer.css({position : "relative", display: "none"});
         $("#expand-map").css({position: "relative", display: "none"});
+    }
+    //if scrolled more than 200px -- hide map
+    if (y > lastNodechange + 400) {
+        footer.css({position : "relative", display: "none"});
+    } else if (y < lastNodechange - 600) {
+        footer.css({position : "relative", display: "none"});
     }
 });
 
@@ -385,7 +394,11 @@ function displayBottomMap(viewer) {
         viewer.resize();
 
     }
+}
 
+function saveCurrentPosition() {
+    lastNodechange = $(document).scrollTop();
+    console.log(lastNodechange);
 }
 
 function initViewerMapBlock(el, startNode) {
@@ -436,6 +449,7 @@ function initViewerMapBlock(el, startNode) {
             })
             var currDiv = el.attr('id');
             document.getElementById(currDiv).scrollIntoView();
+            saveCurrentPosition();
         });
 }
 
