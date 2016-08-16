@@ -127,6 +127,15 @@ h3 {
     z-index: 100;
 }
 
+#expand-map {
+    width: 100%;
+    height:5%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
 #right-map {
     /*position: fixed;
     top: 20px;*/
@@ -182,12 +191,19 @@ h3 {
     top: 40%;
     left: 43%;
 }
-.glyphicon.glyphicon-remove {
+.glyphicon.glyphicon-menu-down {
     font-size: 3em;
     top: 1px;
     padding: 5px;
     padding-left: 10px;
 
+}
+
+.glyphicon.glyphicon-menu-up {
+    font-size: 3em;
+    top: 1px;
+    padding: 5px;
+    padding-left: 10px;
 }
 
 #map-mode {
@@ -363,7 +379,7 @@ p {
     position: relative;
     margin: 0 auto;
     width: 60%;
-    text-align: center;
+    text-align: left;
     padding-top: 10%;
     padding-bottom: 10%;
 }
