@@ -42,7 +42,6 @@ body {
     width: 100%;
     height: 100%;
     margin: auto;
-    /*box-shadow: 3px 3px 3px #888888;*/
 }
 
 body .background {
@@ -58,20 +57,7 @@ body .background {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /*filter: grayscale(50%);
-    -moz-filter: grayscale(50%);
-    -webkit-filter: grayscale(50%);
-    -o-filter: grayscale(50%);*/
-    /*filter: blur(6px);
-    -moz-filter: blur(6px);
-    -webkit-filter: blur(6px);
-    -o-filter: blur(6px);*/
 }
-
-/*body .background h1 {
-    position: fixed;
-    z-index: 10;
-}*/
 
 h1 {
     font-family: 'Source Sans Pro', sans-serif;
@@ -111,13 +97,8 @@ h3 {
     height: 100%;
     margin: auto;
     z-index: 124;
-    /*width: 60%;
-    height: 80%;*/
-    /*z-index: 124;
-    background-color: white;
-    border: 5px solid rgb(255, 255, 255);*/
-    /*box-shadow: 3px 3px 3px #888888;*/
 }
+
 #clear-map {
     width: 100%;
     height:30%;
@@ -137,8 +118,6 @@ h3 {
 }
 
 #right-map {
-    /*position: fixed;
-    top: 20px;*/
     width: 100%;
     height:100%;
     top: 0;
@@ -224,36 +203,6 @@ h3 {
     text-align: center;
 }
 
-/*#story-description h2 {
-    position: relative;
-    color: #474A4E;
-    font-weight: lighter;
-    font-family: Helvetica Neue, Helvetica;
-}*/
-
-/*#text {
-    position: absolute;
-    width: 100%;
-    height: 40%;
-    bottom: 0px;
-    color: black;
-    /*font: 35px Helvetica, Sans-Serif;
-    font-family: 'Source Sans Pro', sans-serif;
-    letter-spacing: -1px;
-    background-color: rgba(256, 256, 256, .25);
-}
-
-#text p {
-    font-size: 40%;
-    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-p {
-    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-family: 'Source Sans Pro', sans-serif;
-}*/
-
 #fullscreen-title {
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -275,15 +224,12 @@ p {
 
 #description {
     display: block;
-    /*background: rgba(255, 255, 255, 0.65);*/
     position: absolute;
     top: 0%;
     width: 100%;
     height: 100%;
     margin: 0 auto;
     padding: 10%;
-    /*border-radius: 6px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);*/
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     color: white;
     text-align: center;
@@ -292,48 +238,45 @@ p {
 }
 
 #authorDate {
-        position: absolute;
-        bottom: 0%;
-        right: 0%;
-        left: 0%;
-        margin: 0 auto;
-        font-family: 'Source Sans Pro', sans-serif;
-        font-weight: 300;
-        color: white;
-        text-align: center;
-        padding: 5%;   
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    left: 0%;
+    margin: 0 auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    padding: 5%;   
 }
 
 #author {
-        position: relative;
-        bottom: 0%;
-        right: 0%;
-        left: 0%;
-        margin: 0 auto;
-        font-family: 'Source Sans Pro', sans-serif;
-        font-weight: 300;
-        color: white;
-        text-align: center;
+    position: relative;
+    bottom: 0%;
+    right: 0%;
+    left: 0%;
+    margin: 0 auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    color: white;
+    text-align: center;
 }
 #date {
-        position: relative;
-        bottom: 0%;
-        right: 0%;
-        left: 0%;
-        margin: 0 auto;
-        font-family: 'Source Sans Pro', sans-serif;
-        font-weight: 300;
-        color: white;
-        text-align: center;
+    position: relative;
+    bottom: 0%;
+    right: 0%;
+    left: 0%;
+    margin: 0 auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    color: white;
+    text-align: center;
 }
 
 #center-panel {
-    /*display: none;
-    position: relative;*/
     width: 100%;
     height: 25%;
     z-index: 6000;
-    /*background-color: white;*/
 }
 
 #mly {
@@ -360,7 +303,6 @@ p {
     font-weight: 300;
     font-style: italic;
     color: white;
-    /*background-color: rgba(32, 32, 32, .65);*/
     z-index: 99;
 }
 

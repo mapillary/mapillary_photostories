@@ -39,21 +39,6 @@ $("#close-bottom-map").click(function() {
     $("#expand-map").css({display: "block"});
 });
 
-//not used rn
-$("#back").click(function() {
-    $('.center-panel').fadeOut("slow");
-    $('#back').fadeOut("slow");
-    var descriptionDiv = $('#img-description').detach();
-    $(playButton).click();
-    $('#mly').empty();
-});
-//not used
-$("#close-map").click(function() {
-    $('#close-map').fadeOut('slow');
-    $("#right-description").fadeIn("slow");
-    $('#back').fadeIn("slow");
-});
-
 initPage();
 initRightMap(53.0, 53.0, 'right-map');
 $("html, body").animate({ scrollTop: 0 }, "fast");
@@ -68,7 +53,6 @@ function initAllViewers() {
         $(fullscreenId).attr('id', fullscreenId);
         initViewerMapBlock($(el));
     });
-    // initMapillaryViewerIcons();
 }
 
 function getGistJson() {
@@ -124,7 +108,6 @@ function initPage() {
         getGistJson();
         // getLocalJson();
        // getLocalNewJson();
-        // initMapillaryViewerIcons();
     });
 }
 
