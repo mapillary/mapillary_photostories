@@ -126,16 +126,6 @@ h3 {
     z-index: 100;
 }
 
-#right-map-2 {
-    margin: auto;
-    width: 60%;
-    height: 80%;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    z-index: 124;
-    background-color: white;
-}
-
 .DirectionsPerspective {
     display: none;
 }
