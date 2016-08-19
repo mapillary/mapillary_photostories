@@ -6,39 +6,10 @@
   "date": "August 19, 2016",
   "keys":[
     {
-      "key": "3NEKWv9HB_7KKLg-O1je4w",
+      "startNode": "3NEKWv9HB_7KKLg-O1je4w",
+      "key": "HMvtlh02g1W0TZm-XAeTgg",
       "title": "Famjin",
-      "description": ""
-    },
-    {
-      "key": "bYGBz7iHn8DpYK7nNKd83w",
-      "title": "Green Roofs",
-      "description": ""
-    },
-    {
-      "key": "WE9tHoDlEZHDGB9XzUz73Q",
-      "title": "Svínoy",
-      "description": ""
-    },
-    {
-      "key": "DTyKKO1q_0xAgEMykXpyIg",
-      "title": "Mykines",
-      "description": ""
-    },
-    {
-      "key": "h_buEWxblU-Iy7im5w64Eg",
-      "title": "Mykines Village",
-      "description": ""
-    },
-    {
-      "key": "kyzfUe2lAuWzxby_Glw9-w",
-      "title": "Puffins",
-      "description": ""
-    },
-    {
-      "key": "gre3ra9qkoTinAajkiT6GQ",
-      "title": "Fugloy Church",
-      "description": ""
+      "description": "starting here"
     }
   ],
   "imageDescriptions" : [
