@@ -22,17 +22,23 @@ $(document).scroll(function() {
         footer = $("#clear-map");
     if (y >= storyPosition)  {
         footer.css({position: "fixed", "top" : "70%"});
-        $("#expand-map").css({position: "fixed", "top" : "95%"});
+        $("#expand-map").css({display: "block", position: "fixed", "top" : "95%"});
     } else {
         //cannot expand map if at top part of page
         footer.css({position : "relative", display: "none"});
         $("#expand-map").css({position: "relative", display: "none"});
     }
-    //if scrolled more than 200px -- hide map
+    //if scrolled more than xxx px -- hide map
     if (y > lastNodechange + 400) {
         footer.css({position : "relative", display: "none"});
+        if (y >= storyPosition) {
+            $("#expand-map").css({display: "block", position: "fixed", "top" : "95%"});
+        }
     } else if (y < lastNodechange - 600) {
         footer.css({position : "relative", display: "none"});
+        if (y >= storyPosition) {
+            $("#expand-map").css({display: "block", position: "fixed", "top" : "95%"});
+        }
     }
 });
 
@@ -94,7 +100,7 @@ function getLocalJson() {
 
 
 function getLocalNewJson() {
-    $.getJSON("rio_story.json", function(json) {
+    $.getJSON("faroe_trip.json", function(json) {
         jsonReturned = json;
         $('#mainTitle').text(jsonReturned.mainTitle);
         $('#mainDescription').text(jsonReturned.frontPageDescription);
@@ -114,9 +120,9 @@ function initPage() {
     $('document').ready(function() {
         $(window).scrollTop();
         
-        getGistJson();
+       // getGistJson();
         // getLocalJson();
-       // getLocalNewJson();
+        getLocalNewJson();
     });
 }
 
@@ -154,7 +160,6 @@ var counter = 0;
 var sequenceIds = [];
 
 function getThumbnailForSequence(sequenceId, length, currentIndex) {
-    console.log(sequenceId);
     sequenceIds.push(sequenceId);
     if (sequenceId != "") {
     var pathAppend = '/v2/s/' + sequenceId + '?client_id=' + CLIENT_ID;
@@ -398,7 +403,6 @@ function displayBottomMap(viewer) {
 
 function saveCurrentPosition() {
     lastNodechange = $(document).scrollTop();
-    console.log(lastNodechange);
 }
 
 function initViewerMapBlock(el, startNode) {
@@ -415,6 +419,7 @@ function initViewerMapBlock(el, startNode) {
             'TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj',
             picId, {
                 cover: true,
+                navigation: true,
                 renderMode: Mapillary.RenderMode.Fill,
                 baseImageSize: Mapillary.ImageSize.Size2048,
                 maxImageSize: Mapillary.ImageSize.Size2048,
@@ -445,7 +450,8 @@ function initViewerMapBlock(el, startNode) {
             rightMap.getSource('markers').setData(tempSource._data)
             rightMap.flyTo({
                 center: lnglat,
-                zoom: 16
+                zoom: 16,
+                speed: 1.7
             })
             var currDiv = el.attr('id');
             document.getElementById(currDiv).scrollIntoView();
