@@ -418,8 +418,7 @@ function initViewerMapBlock(el, startNode) {
         .Viewer(el.attr('id'),
             'TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj',
             picId, {
-                cover: true,
-                navigation: true,
+                cover: false,
                 renderMode: Mapillary.RenderMode.Fill,
                 baseImageSize: Mapillary.ImageSize.Size2048,
                 maxImageSize: Mapillary.ImageSize.Size2048,
