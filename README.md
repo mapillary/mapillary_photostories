@@ -2,6 +2,8 @@
 Tell your stories with photos
 
 ##Getting started 
+    IF YOU ARE GOING TO MAKE CHANGES TO THE CODE FORK UNLESS IT IS A GENERAL CHANGE FOR ALL USERS. DO NOT CHANGE WHICH FILE THE CODE READS FROM OR THE BACKGROUND IMAGE NAME UNLESS YOU HAVE FORKED OR DO NOT PLAN TO PUSH. 
+    
   - Clone the repository
   - cd in to the folder
   - run a server (for example python -m SimpleHTTPServer ) and go to localhost in a web browser (Chrome works best with MapillaryJS)
