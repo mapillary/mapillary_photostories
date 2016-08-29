@@ -100,7 +100,7 @@ function getLocalJson() {
 
 
 function getLocalNewJson() {
-    $.getJSON("story.json", function(json) {
+    $.getJSON("faroe_trip.json", function(json) {
         jsonReturned = json;
         $('#mainTitle').text(jsonReturned.mainTitle);
         $('#mainDescription').text(jsonReturned.frontPageDescription);

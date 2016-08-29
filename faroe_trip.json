@@ -3,27 +3,52 @@
   "frontPageDescription": "The Sheep view project inspired us to roadtrip and map the Faroe Islands",
   "intro": "My son Oskar wanted a road trip for our holiday week this year. We were thinking to go to Norway, Jotunheimen, when we read about the Faroe Island petition and the Sheep View project. How cool! I booked the tickets the day after we read the article, and last week we set off to drive as many of the roads of the Faroe Islands as possible.",
   "author": "Peter Neubauer",
-  "date": "August 19, 2016",
-  "keys":[
+  "date": "August 29, 2016",
+  "keys": [
     {
-      "startNode": "3NEKWv9HB_7KKLg-O1je4w",
-      "key": "HMvtlh02g1W0TZm-XAeTgg",
       "title": "Famjin",
-      "description": "starting here"
+      "startNode": "x-yoQ7yMZ5QfcuJiM2D6mg",
+      "key": "3NEKWv9HB_7KKLg-O1je4w",
+      "description": "Famjin with all cameras visible for navigation"
+
+    },
+    {
+      "title": "Roofs",
+      "key": "bYGBz7iHn8DpYK7nNKd83w",
+      "startNode": "fQCqEFqVeoNZnoEk7td8lA",
+      "description": "The green roofs are real agricultural assets for getting more hay for the sheep, as the slopes are too steep for growing anything almost everywhere else."
+    },
+    {
+      "title": "From a helicopter",
+      "startNode": "0VfgX-3E7x73aZHgKHkVlA",
+      "key": "WE9tHoDlEZHDGB9XzUz73Q",
+      "description": "Helicopter ride with side action cams pointed out the side window."
+    },
+    {
+      "title": "The Fugloy bird cliff",
+      "key": "oOZHHPt14vHKeWr16wVd6g",
+      "startNode": "X0aK6bXbkR0qFFYQcM6mCA",
+      "description": "The big Bird cliff near Hattarvik/Fugloy with both action cams and phone photos"
+    },
+    {
+      "title": "Ferry ride outside Svinoy",
+      "startNode": "luRgqUZXcbiNNEmL2M57MA",
+      "key": "N93rC-IYgPU4VnmrQtkvcw",
+      "description": "Riding a ferry back to Klaksvik"
+    },
+    {
+      "title": "Puffins!",
+      "startNode": "AFYhEXeUlajS9HsWKLyNLA",
+      "key": "kyzfUe2lAuWzxby_Glw9-w",
+      "description": "Puffins nesting like hobbits in the ground on Mykines"
+    },
+    {
+      "title": "Mykines",
+      "startNode": "FAi0w3kS0duEgHgYFt0Exg",
+      "key": "Gk_WFTZg-HiPTHRJrQshjg",
+      "description": "Mykines village, with fantastic grass roofs and traditional style houses"
     }
   ],
-  "imageDescriptions" : [
-    {
-      "key": "DTyKKO1q_0xAgEMykXpyIg", 
-      "description" : "Bird island in the most eastern part of the Faroe islands."
-    },
-    {
-      "key": "WE9tHoDlEZHDGB9XzUz73Q", 
-      "description" : "Helicopter ride with side action cameras."
-    },
-    {
-      "key": "gre3ra9qkoTinAajkiT6GQ", 
-      "description" : "Remotely located church on remotely located island."
-    }
-    ]
+  "imageDescriptions": [
+  ]
 }
