@@ -19,18 +19,6 @@
       "description": "The typical green roofs are real agricultural assets and regularly cut for getting more hay for the sheep, as the slopes are too steep for growing anything almost everywhere else. They also help keep out the rain and keep in the heat."
     },
     {
-      "title": "From a helicopter",
-      "startNode": "0VfgX-3E7x73aZHgKHkVlA",
-      "key": "WE9tHoDlEZHDGB9XzUz73Q",
-      "description": "We also mapped our helicopter ride around Svínoy (which means the Swine Island). From this you can get a good overview of the amazing cliffs that line the coast. The islands consist of three layers of basalt - a rock formed when lava cools down quickly - which were formed some 54 to 58 million years ago in the active volcanic region that today is found around Iceland and the Mid-Atlantic Ridge."
-    },
-    {
-      "title": "The Fugloy bird cliff",
-      "key": "oOZHHPt14vHKeWr16wVd6g",
-      "startNode": "X0aK6bXbkR0qFFYQcM6mCA",
-      "description": "The big bird cliff near Hattarvík on Fugloy, the easternmost of the islands. The name actually means Bird Island, which comes from the fact that it is a very important nesting area to a large amount of seabirds that nest and breed there."
-    },
-    {
       "title": "Ferry ride from Svínoy",
       "startNode": "h4h7GYgCCpt1EOmlKZEUhQ",
       "key": "N93rC-IYgPU4VnmrQtkvcw",
@@ -47,6 +35,18 @@
       "startNode": "FAi0w3kS0duEgHgYFt0Exg",
       "key": "Gk_WFTZg-HiPTHRJrQshjg",
       "description": "Mykines village on the Mykines island (the westernmost of the Faroe Islands), with fantastic grass roofs and traditional-style houses. The island has no roads, and the village itself has no streets. The few inhabitants get around mostly on foot, and hence the network of footpaths is well-developed there."
+    },
+    {
+      "title": "From a helicopter",
+      "startNode": "0VfgX-3E7x73aZHgKHkVlA",
+      "key": "WE9tHoDlEZHDGB9XzUz73Q",
+      "description": "We also mapped our helicopter ride around Svínoy (which means the Swine Island). From this you can get a good overview of the amazing cliffs that line the coast. The islands consist of three layers of basalt - a rock formed when lava cools down quickly - which were formed some 54 to 58 million years ago in the active volcanic region that today is found around Iceland and the Mid-Atlantic Ridge."
+    },
+    {
+      "title": "The Fugloy bird cliff",
+      "key": "oOZHHPt14vHKeWr16wVd6g",
+      "startNode": "X0aK6bXbkR0qFFYQcM6mCA",
+      "description": "The big bird cliff near Hattarvík on Fugloy, the easternmost of the islands. The name actually means Bird Island, which comes from the fact that it is a very important nesting area to a large amount of seabirds that nest and breed there."
     }
   ],
   "imageDescriptions": [
