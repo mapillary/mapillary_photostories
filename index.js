@@ -16,50 +16,50 @@ var lastNodechange;
 
 
 //bottom bar map scroll handler //this will have to change, now just removing map when scrolling
-$(document).scroll(function() {
+$(document).scroll(function () {
     var storyPosition = $("#fullscreen-view").offset().top;
     var y = $(document).scrollTop(),
         footer = $("#clear-map");
-    if (y >= storyPosition)  {
-        footer.css({position: "fixed", "top" : "70%"});
-        $("#expand-map").css({display: "block", position: "fixed", "top" : "95%"});
+    if (y >= storyPosition) {
+        footer.css({position: "fixed", "top": "70%"});
+        $("#expand-map").css({display: "block", position: "fixed", "top": "95%"});
     } else {
         //cannot expand map if at top part of page
-        footer.css({position : "relative", display: "none"});
+        footer.css({position: "relative", display: "none"});
         $("#expand-map").css({position: "relative", display: "none"});
     }
     //if scrolled more than xxx px -- hide map
     if (y > lastNodechange + 400) {
-        footer.css({position : "relative", display: "none"});
+        footer.css({position: "relative", display: "none"});
         if (y >= storyPosition) {
-            $("#expand-map").css({display: "block", position: "fixed", "top" : "95%"});
+            $("#expand-map").css({display: "block", position: "fixed", "top": "95%"});
         }
     } else if (y < lastNodechange - 600) {
-        footer.css({position : "relative", display: "none"});
+        footer.css({position: "relative", display: "none"});
         if (y >= storyPosition) {
-            $("#expand-map").css({display: "block", position: "fixed", "top" : "95%"});
+            $("#expand-map").css({display: "block", position: "fixed", "top": "95%"});
         }
     }
 });
 
 // Click handlers
-$("#open-bottom-map").click(function() {
-  $("#clear-map").css({position: "fixed", display: "block"});
-  $("#expand-map").css({display: "none"});
+$("#open-bottom-map").click(function () {
+    $("#clear-map").css({position: "fixed", display: "block"});
+    $("#expand-map").css({display: "none"});
 });
 
-$("#close-bottom-map").click(function() {
+$("#close-bottom-map").click(function () {
     footer = $("#clear-map");
-    footer.css({position : "relative", display: "none"});
+    footer.css({position: "relative", display: "none"});
     $("#expand-map").css({display: "block"});
 });
 
 initPage();
 initRightMap(53.0, 53.0, 'right-map');
-$("html, body").animate({ scrollTop: 0 }, "fast");
+$("html, body").animate({scrollTop: 0}, "fast");
 
 function initAllViewers() {
-    $('.fullscreen-item').each(function(i, el) {
+    $('.fullscreen-item').each(function (i, el) {
         var picId = $(el).find('img').attr('src').replace("https://d1cuyjsrcm0gby.cloudfront.net/", '');
         picId = picId.replace("/thumb-2048.jpg", '');
         var id = "fullscreen-item-" + picId;
@@ -72,27 +72,27 @@ function initAllViewers() {
 
 function getGistJson() {
     $.ajax({
-            url: 'https://api.github.com/gists/' + '008b49fd6bb056ddf15c6562fb4f0a26',
-            type: 'GET',
-            dataType: 'jsonp'
-        }).success(function(gistdata) {
-            jsonReturned = JSON.parse(gistdata.data.files.sequence_list.content);
-            $('#mainTitle').text(jsonReturned.mainTitle);
-            $('#mainDescription').text(jsonReturned.frontPageDescription);
-            $('#description').fadeIn("slow");
-            $(jsonReturned.keys).each(function(index, element) {
-                getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
-            });
+        url: 'https://api.github.com/gists/' + '008b49fd6bb056ddf15c6562fb4f0a26',
+        type: 'GET',
+        dataType: 'jsonp'
+    }).success(function (gistdata) {
+        jsonReturned = JSON.parse(gistdata.data.files.sequence_list.content);
+        $('#mainTitle').text(jsonReturned.mainTitle);
+        $('#mainDescription').text(jsonReturned.frontPageDescription);
+        $('#description').fadeIn("slow");
+        $(jsonReturned.keys).each(function (index, element) {
+            getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
         });
+    });
 }
 
 function getLocalJson() {
-    $.getJSON("sequence_list.json", function(json) {
+    $.getJSON("sequence_list.json", function (json) {
         jsonReturned = json;
         $('#mainTitle').text(jsonReturned.mainTitle);
         $('#mainDescription').text(jsonReturned.frontPageDescription);
         $('#description').fadeIn("slow");
-        $(jsonReturned.keys).each(function(index, element) {
+        $(jsonReturned.keys).each(function (index, element) {
             getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
         });
     });
@@ -100,7 +100,7 @@ function getLocalJson() {
 
 
 function getLocalNewJson() {
-    $.getJSON("faroe_trip.json", function(json) {
+    $.getJSON("faroe_trip.json", function (json) {
         jsonReturned = json;
         $('#mainTitle').text(jsonReturned.mainTitle);
         $('#mainDescription').text(jsonReturned.frontPageDescription);
@@ -109,7 +109,7 @@ function getLocalNewJson() {
         $('#date').text(jsonReturned.date);
         $('#description').fadeIn("slow");
         $('#authorDate').fadeIn("slow");
-        $(jsonReturned.keys).each(function(index, element) {
+        $(jsonReturned.keys).each(function (index, element) {
             getThumbnailForSequence(jsonReturned.keys[index].key, jsonReturned.keys.length, index);
         });
     });
@@ -117,41 +117,54 @@ function getLocalNewJson() {
 
 //Helper functions
 function initPage() {
-    $('document').ready(function() {
+    $('document').ready(function () {
         $(window).scrollTop();
 
-       // getGistJson();
+        // getGistJson();
         // getLocalJson();
         getLocalNewJson();
     });
 }
 
 //finds the description of the current element
-function findDescription (currentIndex) {
+function findDescription(currentIndex) {
     for (var z = 0; z < jsonReturned.keys.length; z++) {
-            if (jsonReturned.keys[z].key === sequenceIds[currentIndex]) {
-                return jsonReturned.keys[currentIndex].description;
-            }
+        if (jsonReturned.keys[z].key === sequenceIds[currentIndex]) {
+            return jsonReturned.keys[currentIndex].description;
+        }
     }
     return "";
 }
+//finds the startNode of the current element
+function findStartNode(currentIndex) {
+    if (jsonReturned.keys[currentIndex].startNode) {
+        return jsonReturned.keys[currentIndex].startNode;
+    } else {
+        return undefined;
+    }
+}
 
-function appendStoryElements (index) {
+function appendStoryElements(index) {
     for (var i = 0; i < thumbnailURLs.length; i++) {
         if (thumbnailURLs[i] != "") { //if element has sequence
             var id = thumbnailURLs[i].replace('https://d1cuyjsrcm0gby.cloudfront.net/', '');
             id = id.replace('/thumb-2048.jpg', '');
             var description = findDescription(i);
-            $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
+            var thumbnail = findStartNode(i);
+            console.log("thumbnail", thumbnail);
+            if(thumbnail!= undefined) {
+                id = thumbnail;
+            }
+            $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>" + jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
                 description +
                 "</h2> </div> <p id='img-description'></p> <div class='fullscreen-item'> <img src='" +
-                thumbnailURLs[i] +
+                'https://d1cuyjsrcm0gby.cloudfront.net/'+id +'/thumb-2048.jpg' +
                 "'/> </div> </div>");
         } else { //text with no sequence (wont find right description if multiple entries with no sequence)
             var description = findDescription(i);
-            $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>"+ jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
-            description +
-            "</h2> </div> </div>");
+            $('#fullscreen-view').append("<div id='fullscreen-description'> <div class='description-text'> <h1 id='fullscreen-title'>" + jsonReturned.keys[i].title + " </h1> <h2 class='fullscreen-body' id=\'" + jsonReturned.keys[i].title.replace(' ', '-') + "\'>" +
+                description +
+                "</h2> </div> </div>");
         }
     }
 }
@@ -162,30 +175,30 @@ var sequenceIds = [];
 function getThumbnailForSequence(sequenceId, length, currentIndex) {
     sequenceIds.push(sequenceId);
     if (sequenceId != "") {
-    var pathAppend = '/v2/s/' + sequenceId + '?client_id=' + CLIENT_ID;
-    var host = 'https://a.mapillary.com';
+        var pathAppend = '/v2/s/' + sequenceId + '?client_id=' + CLIENT_ID;
+        var host = 'https://a.mapillary.com';
 
-    $.ajax({
-        url: host + pathAppend,
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            var thumbnail = ("https://d1cuyjsrcm0gby.cloudfront.net/" + data.keys[0] +
+        $.ajax({
+            url: host + pathAppend,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var thumbnail = ("https://d1cuyjsrcm0gby.cloudfront.net/" + data.keys[0] +
                 "/thumb-2048.jpg");
-            thumbnailURLs[currentIndex] = thumbnail;
-            counter++;
-            if (counter == length) { //to make sure that all elements have been fetched before continuing
-                appendStoryElements(currentIndex);
-                //should be here, was initializing map multiple times. still dont have all locations..
-                initMap(53.0, 53.0, 'map');
+                thumbnailURLs[currentIndex] = thumbnail;
+                counter++;
+                if (counter == length) { //to make sure that all elements have been fetched before continuing
+                    appendStoryElements(currentIndex);
+                    //should be here, was initializing map multiple times. still dont have all locations..
+                    initMap(53.0, 53.0, 'map');
+                }
+                initAllViewers();
+                // initMap(53.0, 53.0, 'map');
+            }, //success end
+            error: function () {
+                console.log("ERROR: when fetching the thumbnails for the sequences.");
             }
-            initAllViewers();
-           // initMap(53.0, 53.0, 'map');
-        }, //success end
-        error: function() {
-            console.log("ERROR: when fetching the thumbnails for the sequences.");
-        }
-    });
+        });
     } else {
         thumbnailURLs[currentIndex] = ""; //appends empty string to the URL's..
         counter++;
@@ -214,12 +227,12 @@ function initMap(lat, lon, mapContainer) {
     }
 
     //error handling
-    map.on('error', function(err) {
+    map.on('error', function (err) {
         console.log("An error occured while loading the map");
         console.log(err);
     })
 
-    map.on('load', function() {
+    map.on('load', function () {
         map.addSource("points", markerList);
         map.addLayer({
             "id": "points",
@@ -251,7 +264,7 @@ function initMap(lat, lon, mapContainer) {
             }
         }, 'markers')
 
-        map.on('click', function(e) {
+        map.on('click', function (e) {
             var divToScroll = map.queryRenderedFeatures(e.point)[0].properties.title;
             divToScroll = ('#' + divToScroll).toString();
             divToScroll = divToScroll.replace(' ', '-');
@@ -274,7 +287,7 @@ function addMarker(map, bounds, searchKey, title) {
             url: host + pathAppend,
             type: 'GET',
             dataType: 'json'
-        }).success(function(data) {
+        }).success(function (data) {
             var coords = data.coords[0];
             var feature = {
                 "type": "Feature",
@@ -312,12 +325,12 @@ function initRightMap(lat, lon, setMap, picId) {
     };
 
     //on error
-    rightMap.on('error', function(err) {
+    rightMap.on('error', function (err) {
         console.log("An error occured while loading the right-map");
         console.log(err);
     })
 
-    rightMap.on('style.load', function() {
+    rightMap.on('style.load', function () {
         var markerSource = {
             type: 'geojson',
             data: {
@@ -371,7 +384,7 @@ function initRightMap(lat, lon, setMap, picId) {
 
 function checkForImageDescription(el, picId) {
     var imgDescription = "";
-    $(jsonReturned.imageDescriptions).each(function(index, element) {
+    $(jsonReturned.imageDescriptions).each(function (index, element) {
         if (element.key === picId) {
             imgDescription = element.description;
         }
@@ -391,7 +404,7 @@ function displayBottomMap(viewer) {
     //if in div with js viewers
     var storyPosition = $("#fullscreen-view").offset().top;
     var y = $(document).scrollTop();
-    if (y >= storyPosition)  {
+    if (y >= storyPosition) {
         $("#clear-map").css({display: "block"});
         $("#expand-map").css({display: "block"}); //display the expand btn
         $(".fullscreen-item").css({height: "75%"});
@@ -416,44 +429,44 @@ function initViewerMapBlock(el, startNode) {
 
     var viewer = new Mapillary
         .Viewer(el.attr('id'),
-            'TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj',
-            picId, {
-                cover: false,
-                renderMode: Mapillary.RenderMode.Fill,
-                baseImageSize: Mapillary.ImageSize.Size2048,
-                maxImageSize: Mapillary.ImageSize.Size2048,
-                sequence: {
-                    minWidth: 200,
-                }
-            });
-
-
-        viewer.on('nodechanged', function(node) {
-            checkForImageDescription(el, picId);
-            displayBottomMap(viewer);
-            rightMap.resize();
-            var lnglat = [node.latLon.lon, node.latLon.lat]
-            var tempSource = new mapboxgl.GeoJSONSource({
-                data: {
-                    type: 'Feature',
-                    geometry: {
-                        type: 'Point',
-                        coordinates: lnglat
-                    },
-                    properties: {
-                        title: 'You\'re here!',
-                        'marker-symbol': 'marker'
-                    }
-                }
-            })
-            rightMap.getSource('markers').setData(tempSource._data)
-            rightMap.flyTo({
-                center: lnglat,
-                zoom: 16,
-                speed: 1.7
-            })
-            var currDiv = el.attr('id');
-            document.getElementById(currDiv).scrollIntoView();
-            saveCurrentPosition();
+        'TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj',
+        picId, {
+            cover: false,
+            renderMode: Mapillary.RenderMode.Fill,
+            baseImageSize: Mapillary.ImageSize.Size2048,
+            maxImageSize: Mapillary.ImageSize.Size2048,
+            sequence: {
+                minWidth: 200,
+            }
         });
+
+
+    viewer.on('nodechanged', function (node) {
+        checkForImageDescription(el, picId);
+        displayBottomMap(viewer);
+        rightMap.resize();
+        var lnglat = [node.latLon.lon, node.latLon.lat]
+        var tempSource = new mapboxgl.GeoJSONSource({
+            data: {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: lnglat
+                },
+                properties: {
+                    title: 'You\'re here!',
+                    'marker-symbol': 'marker'
+                }
+            }
+        })
+        rightMap.getSource('markers').setData(tempSource._data)
+        rightMap.flyTo({
+            center: lnglat,
+            zoom: 16,
+            speed: 1.7
+        })
+        var currDiv = el.attr('id');
+        document.getElementById(currDiv).scrollIntoView();
+        saveCurrentPosition();
+    });
 }
