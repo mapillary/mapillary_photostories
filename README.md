@@ -7,7 +7,7 @@ Tell your stories with photos, for example from `stories/rio` -> [Rio - an Olymp
   - Clone the repository
   - cd in to the folder
   - run a local web server server (for example `python -m SimpleHTTPServer` ) and go to localhost in a web browser (Chrome works best with MapillaryJS)
-  - You should see the example content under stories/your_story, e.g. [rio](http://localhost:8000/stories/rio/)
+  - You should see the example content under stories/your_story, e.g. [http://localhost:8000/stories/rio/](http://localhost:8000/stories/rio/)
 
 ##How to add your own Story
 
