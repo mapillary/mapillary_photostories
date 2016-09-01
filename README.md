@@ -6,7 +6,7 @@ Tell your stories with photos
 
   - Clone the repository
   - cd in to the folder
-  - run a server (for example python -m SimpleHTTPServer ) and go to localhost in a web browser (Chrome works best with MapillaryJS)
+  - run a local web server server (for example `python -m SimpleHTTPServer` ) and go to localhost in a web browser (Chrome works best with MapillaryJS)
   - You should see the example content under stories/your_story, e.g. [rio](http://localhost:8000/stories/rio/)
 
 ##How to add your own Story
