@@ -7,14 +7,14 @@ Tell your stories with photos
   - Clone the repository
   - cd in to the folder
   - run a server (for example python -m SimpleHTTPServer ) and go to localhost in a web browser (Chrome works best with MapillaryJS)
-  - You should see the example content!
+  - You should see the example content under stories/your_story, e.g. [rio](http://localhost:8000/stories/rio/)
 
-##How to Add Your Stories
+##How to add your own Story
 
-  - Open story.json in your favorite text editor.
-
-  - Save the structure in the sequence list, and your text and sequence keys
-
+  - clone one of the stories under /stories
+  - adjust the story.json, and cover.jpg
+  - you shouldn't need to touch index.html
+  
 ###In case there is any section that you don't want to use in your story, don't delete it! instead just leave that section as "".
 
   - These are the sections in the json file that you can change:
