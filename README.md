@@ -1,5 +1,5 @@
 # mapillary_photostories
-Tell your stories with photos
+Tell your stories with photos, for example from `stories/rio` -> [Rio - an Olympic city](http://mapillary.github.io/mapillary_photostories/stories/rio/).
 
 ##Getting started
     Do not change the file name photostories reads the story or background from. You can fork your own story map and change this if you wish, otherwise overwrite story.json and story-background.jpg.
