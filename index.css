@@ -72,19 +72,17 @@ h2 {
 h3 {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
-    font-style: italic;
 }
 
 #title {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 300;
+    font-family: 'avenir', sans-serif;
+    font-weight: 600;
     font-size: 80px;
 }
 
 #subtitle {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
-    font-style: italic;
     font-size: 20px;
     width: 50%;
     text-align: center;
