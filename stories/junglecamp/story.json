@@ -1,0 +1,89 @@
+{
+  "mainTitle": "Hope Is The Strongest Force",
+  "frontPageDescription": "Glimpses Into Life At the Jungle Camp",
+  "intro": "In July 2016, Jaakko Hellerante and I set out for the Calais Jungle, of one of the largest refugee camps in Europe. Our goal was to help MapFugees, a Humanitarian OpenStreetMap team, complete a basemap of the camp using Mapillary photos. As we collected street-level photos of the camp to edit OpenStreetMap, we captured snapshots of life in the Jungle, where over 7,000 people live without calling it home. ",
+  "author": "Janine Yoong",
+  "date": "September 2, 2016",
+  "keys": [
+    {
+      "title": "A Charming Coastal Town",
+      "startNode": "k-OhQr5oMr_CTWKbgum44w",
+      "key": "8x_nBsRRgWoTy9Dg55WtQw",
+      "description":"The Jungle Camp is located in Calais, just across the channel from England. The town outside the camp is an inviting combination of modern infrastructure and old-world charm, except for the intimidating steel security fences all around the coast."	
+    },
+    {
+      "title": "School",
+      "startNode": "BFqNOOOOq6Dk1nUKMEdzyw",
+      "key": "tZ4SJm8RFV-kqHjyBU9unQ",
+      "description": "The first thing you see as you walk into the camp from the road is the <i>Ecole Laïque</i>: the secular school. One of our guides, a refugee from Syria now working with MapFugees, teaches English here in the evenings."
+    },
+    {
+      "title": "Church",
+      "startNode": "RGTu0QdBHhAUSEQHHnCz5A",
+      "key": "4q6Ng9GNlKlOPIWOL5yjYw",
+      "description":"The church is easy to spot from the path because the makeshift crosses are visible from a distance. On the morning I arrived, service was in full-swing, you could hear the singing as you approached from the path. People were clustered in front of the altar, but many sat in the pews, some with their heads in their hands. No cameras allowed during service."
+    },
+    {
+      "title": "Jungle Books",
+      "startNode": "R6ZBaw3ViuEwr8Nyss7pzw",
+      "key": "168t9kGKtH2pyhmHtT7EyA",
+      "description":"The library behind the church has a decent collection of donated books, and doubles as a classroom. When I passed through, children were repeating words after a volunteer teacher in dubious unison, as schoolchildren do everywhere in the world.  Cameras are strictly off-limits inside."
+    },
+    {
+      "title": "Wifi Truck",
+      "startNode": "Q2CELzddTaajp4XHn73e0g",
+      "key": "4q6Ng9GNlKlOPIWOL5yjYw",
+      "description":"People cluster aroud a blue truck for Wifi access, which turns up everyday, thanks to the great work of <a href=\"http://www.cnet.com/news/refugees-cling-to-wi-fi-calais-jungle-france-refugee-crisis/\">Refugee Info Bus</a>. In partnership with the Jungle Book library, the project provides access to information on asylum law and regulations."
+    },
+    {
+      "title": "Food",
+      "startNode": "0r8gweSmtJiWzzCy1ClLVg",
+      "key": "YyWOffqAGQgNH-pIEpW3AA",
+      "description":"Long queues for lunch and dinner, served by volunteers. On his first day, Jaakko witnessed a fight at dinner, allegedly started over a small slight: cutting the queue. That fight <a href=\"http://www.standard.co.uk/news/world/migrant-hacked-to-death-in-bloodbath-at-calais-jungle-camp-a3304491.html/\">escalated</a> that night, resulting in the death of a 37-year old man from Ethiopia."
+    },
+    {
+      "title": "Bazaar",
+      "startNode": "tXR54PKVsLBnFH8_YiPnfg",
+      "key": "BjKRyLUSs1UUkgahiNycgw",
+      "description":"Commerce has sprouted up on what one could call a 'main street'. Resourceful refugees sell food, cigarettes, and mementos of homes they left. Photos of the bazaar in the news earlier this year depicted a thriving marketplace, but when we showed up in July recent raids by the local authorities had left the shops empty and dilapidated."
+    },
+    {
+      "title": "Tents",
+      "startNode": "w0IQlelwFeXhmVXtGBtu4g",
+      "key": "TZ3Mt6o9CmViOAKaYmVYsA",
+      "description":"Most of the camp residents - young, single men - live in tents. Tents, campers, and outhouses are all canvases for self-expression: <i>Hope is the Greatest Force</i>. <i>Days Travel Fast, Hope Keeps Us Alive</i>. <i>Live Together As Brothers, Die Together As Fools</i>. <i>Everybody Together, Everybody The Same</i>. <i>Joy</i>." 
+    },
+    {
+      "title": "Playground",
+      "startNode": "GGr3mzKQUrnTsyJRjli1Gw",
+      "key": "HWGWHC2XRN_Zoi_truLqLg",
+      "description":"An estimated 900 of the residents are minors. Women and children live in the slightly secluded 'family area' of the camp. When we passed through a young father from Syria was spotting his exuberant 3-year old son coming down the slide."
+    },
+    {
+      "title": "Women & Children's Centre",
+      "startNode": "GYq7qb-FkpV8iaUjgwfOYw",
+      "key": "XHYfx572Lwl8_XbR2o3TJw",
+      "description": "The Centre provides services and a safe space for women, and supports children that have been separated from ther families. As we walked past we heard the unmistakable sounds of happy children at play. A group of women walking toward the Center waved at us and laughed as we cringed at the sight of dead rats on the street."
+    },
+    {
+      "title": "Art School",
+      "startNode": "3hM7-JowBFv6YkSPUIobuw",
+      "key": "jFNG336JH1x6jyaMo04Dlg",
+      "description": "Like the Bazaar, what we saw of the Art School was a shadow of what it had been a few months before. The thatched hut where children were taught to draw was dismantled in a recent eviction - but <a href=\"http://www.chubmagazine.com/african-arts-series-art-school-jungle/\">rebuilt and honored</a> recently at an art festival in London."
+    },
+    {
+      "title": "Doctors Without Borders",
+      "startNode": "9tLRJkxhoZRCY18v2x5Vmg",
+      "key": "Iw7imZyHoGDAemQ72V-TYQ",
+      "description":"The clinic was quiet when we passed by. The doctor was reticent to chat about the violence from the previous night, but the lone patient was voluble in his despair: 'I've been here seven months,' he said. 'UK, France, Germany, Sweden - no one will have me. Where will I go?'"
+    },
+    {
+      "title": "Credits",
+      "startNode": "3hM7-JowBFv6YkSPUIobuw",
+      "key": "jFNG336JH1x6jyaMo04Dlg",
+      "description":"Many thanks to Katja Ulbert and the MapFugees team that coordinated our visit, and for the work you do; Jaakko Hellerante for what he taught me about empathy in just three days; and to the residents of the Jungle Camp who shared coffee and stories. For more background on the project, read about it on the  <a href=\"#\">Mapillary blog.</a> "
+    }
+  ],
+  "imageDescriptions": [
+  ]
+}
