@@ -4,7 +4,7 @@
   "intro": "Cairo also known as al-Qahira (The Victorious) is a city that never sleeps. It's not only Egypt's largest city but its most historic. The area is known for its landmarks that represent both Ancient Egypt and its Islamic history, drawing many tourists. Many of the region's most famous landmarks are not actually in Cairo but in the small neighboring city of Giza.",
   "author": "Karim Osman",
   "date": "January 7, 1986",
-  "keys":[
+  "keys": [
     {
       "key": "TCmrzxgXOuRLkk6LcZNoGQ",
       "title": "Ring Road",
@@ -19,13 +19,8 @@
       "key": "r12FPp7xh6LRyGXgTZZRw",
       "title": "El Teseen Street",
       "description": "One of the main streets of New Cairo, a suburb on the southeastern edge of Cairo Governorate."
-    },
-    {
-      "key": "",
-      "title": "",
-      "description": ""
     }
   ],
-  "imageDescriptions" : [
+  "imageDescriptions": [
    ]
 }
