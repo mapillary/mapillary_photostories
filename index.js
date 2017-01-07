@@ -222,7 +222,7 @@ function initMap(lat, lon, mapContainer) {
     };
 
     var bounds = new mapboxgl.LngLatBounds();
-    for (var i = 1; i < jsonReturned.keys.length; i++) {
+    for (var i = 0; i < jsonReturned.keys.length; i++) {
         addMarker(map, bounds, jsonReturned.keys[i].key, jsonReturned.keys[i].title)
     }
 
@@ -431,7 +431,7 @@ function initViewerMapBlock(el, startNode) {
         .Viewer(el.attr('id'),
         'TVBudDVxUkNVVU5BZFQ5QmpKZVlndzoxMjE3N2VmOTE2YzU4OTNj',
         picId, {
-            cover: true,
+            cover: false,
             renderMode: Mapillary.RenderMode.Fill,
             baseImageSize: Mapillary.ImageSize.Size2048,
             maxImageSize: Mapillary.ImageSize.Size2048,
